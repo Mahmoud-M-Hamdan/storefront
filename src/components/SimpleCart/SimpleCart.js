@@ -3,8 +3,9 @@ import React from "react";
 
 import { connect } from "react-redux";
 
-import { increaseInStock } from "../../store/product";
+import { increaseInStock } from "../../store/products";
 import { decrement } from "../../store/cart";
+import { updateProducts } from "../../store/actions";
 
 import "./simpleCart.scss";
 
@@ -43,6 +44,6 @@ const mapStateToProps = (state) => ({
   cart: state.cart,
 });
 
-const mapDispatchToProps = { increaseInStock, decrement };
+const mapDispatchToProps = { increaseInStock, decrement, updateProducts };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleCart);
