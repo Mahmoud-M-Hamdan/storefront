@@ -12,10 +12,7 @@ import { Col, Row } from "react-bootstrap";
 
 import "./products.scss";
 
-import { increment } from "../../store/cart";
-import { decreaseInStock } from "../../store/products";
-
-import { v4 as uuid } from "uuid";
+// import { updateActiveCategory } from "../../store/store";
 
 function Products(props) {
   return (
@@ -28,14 +25,14 @@ function Products(props) {
       )}
       <Row xs={3} style={{ width: "100%" }}>
         {props.myStore.activeCategory &&
-          props.products
+          props.myStore.products
             .filter((item) => {
               return item.category === props.myStore.activeCategory.name;
             })
-            .map((item, index) => {
+            .map((item) => {
               return (
                 <Col>
-                  <Card sx={{ maxWidth: 345 }} className="card" key={index}>
+                  <Card sx={{ maxWidth: 345 }} className="card">
                     <CardMedia
                       component="img"
                       height="140"
@@ -51,27 +48,10 @@ function Products(props) {
                         Description: {item.description}
                         <br />
                         Price: {item.price}$
-                        <br />
-                        In Stock: {item.inStock}
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button
-                        size="small"
-                        onClick={() => {
-                          if (item.inStock > 0) {
-                            props.increment({
-                              name: item.name,
-                              id: uuid(),
-                              price: item.price,
-                            });
-                          }
-
-                          props.decreaseInStock(item);
-                        }}
-                      >
-                        Add To Cart
-                      </Button>
+                      <Button size="small">Add To Cart</Button>
                       <Button size="small">View Details</Button>
                     </CardActions>
                   </Card>
@@ -85,10 +65,6 @@ function Products(props) {
 
 const mapStateToProps = (state) => ({
   myStore: state.myStore,
-  cart: state.cart,
-  products: state.products,
 });
 
-const mapDispatchToProps = { increment, decreaseInStock };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps)(Products);
