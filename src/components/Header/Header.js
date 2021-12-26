@@ -1,17 +1,22 @@
 import React from "react";
 import "./header.scss";
 import { Navbar, Container, NavItem } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 function Header(props) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home" id="logo">
-       😍  تفضل عالمعرض
+        <Navbar.Brand id="logo">
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            😍 تفضل عالمعرض          </Link>
         </Navbar.Brand>
-        <NavItem style={{ color: "white" }}>Cart({props.cart.length})</NavItem>
+        <NavItem href="/cart" style={{ color: "white", cursor: "pointer" }}>
+          <Link to="/cart" style={{ textDecoration: "none", color: "white" }}>
+            Cart({props.cart.length})
+          </Link>
+        </NavItem>
       </Container>
     </Navbar>
   );

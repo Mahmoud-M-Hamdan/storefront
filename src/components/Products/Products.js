@@ -13,7 +13,7 @@ import { Col, Row } from "react-bootstrap";
 import "./products.scss";
 
 import { increment } from "../../store/cart";
-import { decreaseInStock } from "../../store/product";
+import { decreaseInStock } from "../../store/products";
 
 import { v4 as uuid } from "uuid";
 
